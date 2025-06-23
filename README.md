@@ -1,16 +1,16 @@
-# xylophone_song
+# Xylophone Song
 
-A new Flutter project.
+Aplikasi Flutter sederhana untuk memainan musik Xylophone
 
-## Getting Started
+## Fitur
 
-This project is a starting point for a Flutter application.
+- Menampilkan pilihan 3 lagu untuk dimainkan versi Xylophone
 
-A few resources to get you started if this is your first Flutter project:
+## Cara Menjalankan
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone repo atau download source code ini.
+2. Buka folder project di VS Code/Android Studio.
+3. Jalankan perintah:
+   flutter pub get
+   flutter run
+4. Selesai! Aplikasi akan tampil di emulator/device.
