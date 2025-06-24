@@ -1,91 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-class Player {
-  static Future<void> play(String src) async {
+void main() => runApp(const XylophoneApp());
+
+class XylophoneApp extends StatelessWidget {
+  const XylophoneApp({super.key});
+
+  void playSound(int soundNumber) {
     final player = AudioPlayer();
-    await player.play(AssetSource(src));
+    player.play(AssetSource('note$soundNumber.wav'));
   }
-}
 
-void main() {
-  runApp(const XylophoneLaguApp());
-}
-
-class XylophoneLaguApp extends StatelessWidget {
-  const XylophoneLaguApp({super.key});
-
-  Widget buildSongButton({
-    required String title,
-    required String fileName,
-    required Color color,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
-      child: SizedBox(
-        width: double.infinity,
-        height: 60,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: color,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            textStyle: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+  Expanded buildKey({required int soundNumber, required Color buttonColor}) {
+    return Expanded(
+        child: TextButton(
+          style: TextButton.styleFrom(
+            backgroundColor: buttonColor,
           ),
           onPressed: () {
-            Player.play('songs/$fileName');
+            playSound(soundNumber);
           },
-          child: Text(title),
-        ),
-      ),
+          child: Text('soundNumber: $soundNumber'),
+        )
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Xylophone',
       home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.deepPurple,
-          title: const Text(
-            'Prak. PBM - Xylophone',
-            style: TextStyle(color: Colors.white),
+        backgroundColor: Colors.black,
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              buildKey(soundNumber: 1, buttonColor: Colors.red),
+              buildKey(soundNumber: 2, buttonColor: Colors.orange),
+              buildKey(soundNumber: 3, buttonColor: Colors.yellow),
+              buildKey(soundNumber: 4, buttonColor: Colors.green),
+              buildKey(soundNumber: 5, buttonColor: Colors.teal),
+              buildKey(soundNumber: 6, buttonColor: Colors.blue),
+              buildKey(soundNumber: 7, buttonColor: Colors.purple),
+            ],
           ),
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            buildSongButton(
-              title: "Baby Shark",
-              fileName: "baby_shark.mp3",
-              color: Colors.pinkAccent,
-            ),
-            buildSongButton(
-              title: "Twinkle Twinkle",
-              fileName: "twinkle.mp3",
-              color: Colors.green,
-            ),
-            buildSongButton(
-              title: "Happy Birthday",
-              fileName: "hbd.mp3",
-              color: Colors.blue,
-            ),
-            const SizedBox(height: 24),
-            const Divider(thickness: 1),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                'Fitri Atika Salwa\n4522210080\nPrak. PBM - A',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
-          ],
         ),
       ),
     );
